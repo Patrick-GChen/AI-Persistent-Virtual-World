@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=3 uid="uid://6afyj7j5sb0w"]
+
+[ext_resource type="PackedScene" uid="uid://8u2m3uq6u7np" path="res://agents/caravan.tscn" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://c530ke270i34k" path="res://scripts/world_state.gd" id="1_rarhs"]
+[ext_resource type="Script" uid="uid://cbij0sk2fv000" path="res://scripts/caravan_spawner.gd" id="2_c01mt"]
+[ext_resource type="Script" uid="uid://dvew5k302i8cu" path="res://scripts/cityA.gd" id="2_vcsgt"]
+[ext_resource type="Script" uid="uid://b42u4affigjnt" path="res://scripts/cityB.gd" id="3_c01mt"]
+[ext_resource type="Script" uid="uid://nshapy3bdgq6" path="res://scenes/ui.gd" id="4_c01mt"]
+[ext_resource type="Texture2D" uid="uid://7nbemsqpvi76" path="res://city.png" id="6_nxtc6"]
+[ext_resource type="Texture2D" uid="uid://pvfcuudik6p" path="res://road.png" id="8_q8u5g"]
+[ext_resource type="Texture2D" uid="uid://uj3qgvdk7gb6" path="res://river.png" id="9_lhr70"]
+[ext_resource type="Texture2D" uid="uid://crk7ns18u1thh" path="res://mountain1.png" id="10_bjd11"]
+[ext_resource type="Texture2D" uid="uid://bexdf8eg28s82" path="res://mountain2.png" id="11_qmy6f"]
+[ext_resource type="Script" uid="uid://bnqm0etvwyd5j" path="res://scenes/governor.gd" id="12_mwfav"]
+
+[sub_resource type="Curve2D" id="Curve2D_rvslj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -592, -306, -33, -9, 33, 9, -403, -300, 0, 0, 0, 0, -489, -122, 0, 0, 0, 0, -410, -58, 0, 0, 0, 0, -293, -59, 0, 0, 0, 0, -222, -101, -35, 0, 35, 0, -134, -274, 0, 0, 0, 0, -11, -218, 0, 0, 0, 0, 49, -154, 0, 0, 0, 0, 170, -83)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_0bbpv"]
+_data = {
+"points": PackedVector2Array(-91, -22, 91, 22, -121, -175, -67, -47, 67, 47, 134, -7, -49.38877, -20.245201, 49.38877, 20.245201, 461, 129, 0, 0, 0, 0, 534, 157, -15.55864, 14.418615, 15.55864, -14.418615, 679, 74)
+}
+point_count = 5
+
+[node name="Main" type="Node2D"]
+
+[node name="WorldState" type="Node" parent="."]
+script = ExtResource("1_rarhs")
+
+[node name="CaravanSpawner" type="Node" parent="."]
+script = ExtResource("2_c01mt")
+caravan_scene = ExtResource("1_elqb8")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_c01mt")
+
+[node name="InfoPanel" type="Panel" parent="UI"]
+offset_right = 1152.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 131.0
+
+[node name="Label_cityA" type="Label" parent="UI/InfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_cityB" type="Label" parent="UI/InfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_route" type="Label" parent="UI/InfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_util" type="Label" parent="UI/InfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label_governor" type="Label" parent="UI/InfoPanel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="CityA" type="Node2D" parent="."]
+position = Vector2(220, 114)
+script = ExtResource("2_vcsgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="CityA"]
+position = Vector2(1.0000076, -0.9999962)
+scale = Vector2(0.04101561, 0.04052738)
+texture = ExtResource("6_nxtc6")
+
+[node name="CityB" type="Node2D" parent="."]
+position = Vector2(995, 353)
+script = ExtResource("3_c01mt")
+safety = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="CityB"]
+position = Vector2(1.0000076, -0.9999962)
+scale = Vector2(0.04101561, 0.04052738)
+texture = ExtResource("6_nxtc6")
+
+[node name="RoadPath" type="Path2D" parent="."]
+position = Vector2(809, 436)
+curve = SubResource("Curve2D_rvslj")
+
+[node name="RoadLine2D" type="Line2D" parent="RoadPath"]
+texture_filter = 2
+position = Vector2(-38, -112)
+points = PackedVector2Array(-553, -210, -367, -205, -356, -186, -450, -25, -373, 51, -251, 49, -181, 0, -107, -173, -79, -175, 25, -119, 93, -47, 194, 13)
+texture = ExtResource("8_q8u5g")
+texture_mode = 2
+
+[node name="RiverPath" type="Path2D" parent="."]
+position = Vector2(328, 312)
+curve = SubResource("Curve2D_0bbpv")
+
+[node name="RiverLine2D" type="Line2D" parent="RiverPath"]
+texture_filter = 2
+position = Vector2(430, 42)
+points = PackedVector2Array(-554, -213, -470, -181, -385, -115, -277, -36, -205, -4, -57, 53, 96, 118, 243, 33)
+texture = ExtResource("9_lhr70")
+texture_mode = 2
+
+[node name="Bridge" type="Node2D" parent="."]
+position = Vector2(371, 236)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bridge"]
+visible = false
+
+[node name="Bridge2" type="Node2D" parent="."]
+position = Vector2(559, 353)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bridge2"]
+visible = false
+
+[node name="mountain" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="mountain"]
+position = Vector2(436, 320.00003)
+rotation = -0.20700884
+scale = Vector2(0.61239994, 0.51301897)
+texture = ExtResource("10_bjd11")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mountain/Sprite2D"]
+polygon = PackedVector2Array(21.270447, -16.576965, 0.40020752, -49.69397, -79.36081, 71.725464, 78.83142, 73.54083)
+
+[node name="Sprite2D2" type="Sprite2D" parent="mountain"]
+position = Vector2(774, 260)
+rotation = 0.38757735
+texture = ExtResource("11_qmy6f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mountain/Sprite2D2"]
+polygon = PackedVector2Array(21.595825, -18.537003, -22.802979, 57.91394, -58.989258, 8.95932, -120.60083, 93.517075, 124.711, 93.825134, 72.00934, 20.289215, 58.406128, 39.88388)
+
+[node name="Sprite2D3" type="Sprite2D" parent="mountain"]
+position = Vector2(502.00003, 153)
+rotation = 0.069229364
+scale = Vector2(0.8784174, 0.9333204)
+texture = ExtResource("11_qmy6f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mountain/Sprite2D3"]
+polygon = PackedVector2Array(21.374878, -19.653236, -21.868347, 59.42402, -58.7406, 8.129555, -117.489716, 93.58881, 123.32086, 93.98345, 73.12305, 16.70823, 56.842102, 43.547127)
+
+[node name="Governor" type="Node2D" parent="."]
+script = ExtResource("12_mwfav")

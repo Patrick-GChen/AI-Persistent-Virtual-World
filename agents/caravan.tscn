@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://8u2m3uq6u7np"]
+
+[ext_resource type="Script" uid="uid://bshdg5hj0awfo" path="res://scripts/caravan.gd" id="1_gm6iu"]
+[ext_resource type="Texture2D" uid="uid://b14ckbm54r8x5" path="res://caravan.png" id="2_chnou"]
+
+[node name="Caravan" type="PathFollow2D"]
+script = ExtResource("1_gm6iu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.040527333, 0.041015625)
+texture = ExtResource("2_chnou")
