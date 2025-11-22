@@ -89,4 +89,8 @@ This project is **not only a game demo**—it is a **research testbed**.
    ```bash
    git clone https://github.com/Patrick-GChen/AI-Persistent-Virtual-World.git
 
+---
+here's the version:
+<img width="1152" height="647" alt="a3e5da4efa18d94064f215e1f06ecb1c" src="https://github.com/user-attachments/assets/6d9c72dc-cee0-43a6-a4d5-56af7a61fd50" />
+
 
