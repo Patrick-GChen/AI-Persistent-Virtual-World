@@ -42,12 +42,51 @@ This project is **not only a game demo**—it is a **research testbed**.
 
 ## 🏗️ 3. System Architecture
 
-/AI-Persistent-Virtual-World
-├── godot/ # Godot project (main simulation environment)
-├── scripts/ # Agent logic, decision components, utilities
-├── docs/ # Research notes, design diagrams, dev logs
-├── README.md # (You are here)
-└── LICENSE
+### Key Components
 
+- **Agent.gd**  
+  Base agent with movement, sensing, and state variables.
+
+- **NeedsComponent.gd**  
+  Models hunger, energy, social needs that decay over time.
+
+- **DecisionSystem.gd**  
+  Utility-based selector or finite-state-machine logic.
+
+- **Environment.gd**  
+  Handles world objects, resources, and interactions.
+
+- **Logger.gd**  
+  Outputs behavior logs for later analysis or visualization.
+
+---
+
+## 🧩 4. Features (Current & Planned)
+
+### ✔ Implemented / In Progress
+- Multiple agents acting autonomously  
+- Basic perception system (vision radius)  
+- FSM or utility-based decision-making  
+- World with interactable objects (food, resting spots)  
+- Behavior logging to file  
+- Persistent simulation loop
+
+### 🔧 Planned Extensions
+- Agent-to-agent communication  
+- Social behavior modeling  
+- Reinforcement learning agent variant  
+- Neural-based decision modules  
+- Long-term memory for agents  
+- Dynamic weather/time cycles  
+- Analytics dashboard for behavior data
+
+---
+
+## 🚀 5. Running the Project
+
+1. Install **Godot 4.x**  
+2. Clone this repository:
+   ```bash
+   git clone https://github.com/Patrick-GChen/AI-Persistent-Virtual-World.git
 
 
